@@ -1,0 +1,189 @@
+#1
+https://www196.lunapic.com/editor/
+Swirl an Image with 116
+
+ zbarimg \#1.png
+QR-Code:he19-Eihb-UUVw-nObm-lxaW
+scanned 1 barcode symbols from 1 images in 0.05 seconds
+
+#7
+bash -xv eggi.sh  ....
+
+try and verify output then ...
+
+bash -xv eggi.sh -R 465 -a 333 -b 911 -I 112 -t 007
+
+Great, that are the perfect arguments. It took some time, but I'm glad, you see it now, too!
+++ sleep 2
+++ b x-www-browser
+++ type x-www-browser
+++ x-www-browser https://hackyeaster.hacking-lab.com/hackyeaster/images/eggs/a61ef3e975acb7d88a127ecd6e156242c74af38c.png
+[18769:18769:0413/231549.692298:ERROR:zygote_host_impl_linux.cc(89)] Running as root without --no-sandbox is not supported. See https://crbug.com/638180.
+root@a-k:/tmp# wget https://hackyeaster.hacking-lab.com/hackyeaster/images/eggs/a61ef3e975acb7d88a127ecd6e156242c74af38c.png
+
+zbarimg a61ef3e975acb7d88a127ecd6e156242c74af38c.png
+QR-Code:he19-Bxvs-Vno1-9l9D-49gX
+scanned 1 barcode symbols from 1 images in 0.04 seconds
+
+
+#9
+
+Rev.pl
+
+#!usr/local/bin/perl
+open(FILE ,"evihcra.piz");
+open(my $fh, '>', 'archive.zip');
+binmode $fh;
+
+my $count = 67795;
+while ($count >= 0) {
+seek(FILE, $count,0);
+read(FILE,$byte,1);
+
+#printf("0x%02X", ord($byte));
+print $fh $byte;
+$count--;
+}
+
+close(FILE);
+close $fh;
+
+unzip archive.zip
+
+REVERSE ONLY GNP to PNG with HEX EDITOR !
+
+with  Paint.Net
+- Capovolgi orizzontalmente
+- Inverti colori
+zbarimg egg09.png
+QR-Code:he19-VFTD-kVos-DeL1-lATA
+scanned 1 barcode symbols from 1 images in 0.04 seconds
+
+#############
+
+#11
+
+more test.pl
+use 5.012;
+
+use MIME::Base64;
+use WWW::Mechanize ();
+use Data::Dumper qw(Dumper);
+use Digest::SHA1  qw(sha1 sha1_hex sha1_base64);
+
+my $mech = WWW::Mechanize->new();
+ 
+#try 3 step ?
+my $j;
+for ($j=1; $j <= 10; $j++) {
+print "\nRound $j\n";
+
+my $url = 'http://whale.hacking-lab.com:1111/';
+$mech->get( $url );
+
+my $content = $mech->content;
+
+my %pics;
+my $i;
+for ($i=0; $i <= 97; $i++) {
+  $mech->get('http://whale.hacking-lab.com:1111/pic/'.($i+1));
+  my $c = $mech->content;
+  my $lc = length($c);
+  print "\nSize of $i -> ".$lc;
+  #open(my $fh, '>', $i.'.jpg');
+  #binmode $fh;
+  #print $fh $c;
+  #close $fh;
+  if (!defined $pics{$lc}) { $pics{$lc} = scalar($i+1); } else { $pics{$lc} .= '<ALICE>'.scalar($i+1); }
+  #$mech->back();
+}
+
+foreach my $item (keys %pics) {
+  my @a = split('<ALICE>', $pics{$item});   
+
+  my $su = "'http://whale.hacking-lab.com:1111/solve', [first=>$a[0], second=>$a[1]]'";
+
+  print "\nFound \t".$pics{$item}."\t Sending POST: $su";
+
+  my $resp = $mech->post('http://whale.hacking-lab.com:1111/solve', [ 'first'=>$a[0], 'second'=>$a[1]]);
+  #$mech->back();
+  print "\n\n".$resp->decoded_content."\n\n";
+}
+
+...... RUNNING ....
+
+ok, here is your flag: 1-m3m3-4-d4y-k33p5-7h3-d0c70r-4w4y
+
+wget https://hackyeaster.hacking-lab.com/hackyeaster/images/eggs/2b8c672e9759bd56ab1702dcee0e109182374b8c.png
+
+zbarimg 2b8c672e9759bd56ab1702dcee0e109182374b8c.png
+QR-Code:he19-jaQ9-0NIr-Ladc-brOT
+Submit Flag...
+
+########################
+
+#3 
+Decode.rb
+require"base64"
+# test
+# encrypted text:LjG7n80dns+hkaaYQKo0CqOOvhyCrBHyBmmHDxNDMfoSDjjjjjjjjjjjTY6/
+# 3A==
+
+input="K7sAYzGlYx0kZyXIIPrXxK22DkU4Q+rTGfUk9i9vA60C/ZcQOSWNfJLTu4RpIBy/27yK5CBW+UrBh
+m0=".chomp
+
+b=Base64.decode64(input)
+puts"decode text:""#{b}"
+
+h=b.unpack('C'*b.length).map{|x| '%02x'%x}.join
+
+div = ['5'].cycle(101).to_a.join.to_i;
+x= h.to_i(16) / div;
+
+puts"x:""#{x}"
+ox = '%X'%x
+fin = ox.scan(/../).map { |ox| ox.hex.chr }.join
+
+puts"finally text:""#{fin}"
+
+finally text:n00b_style_crypto
+give me an eggs 5e85a37b41817e9d35f95009650d5ad8320801c8.png
+
+zbarimg 5e85a37b41817e9d35f95009650d5ad8320801c8.png
+QR-Code:he19-YPkZ-ZZpf-nbYt-6ZyD
+
+send to https://hackyeaster.hacking-lab.com/hackyeaster/flags.html
+
+########################
+
+#2
+get Frames with http://picasion.com/get-frames/
+Decode With
+http://www.asl.gs/
+or
+https://it.wikipedia.org/wiki/Lingua_dei_segni#/media/File:Asl_alphabet_gallaudet_ann.svg
+
+get zivemeasidn .... but it's givemeasign !!!
+After
+
+wget 87340bc4296ff0f53b41c5ef2312139e1af818d4.png
+zbarimg 87340bc4296ff0f53b41c5ef2312139e1af818d4.png
+QR-Code:he19-DwWd-aUU2-yVhE-SbaG
+
+########################
+
+#5
+
+Found Author: SCipher ...
+Goggling and ... give https://pdos.csail.mit.edu/archive/scigen/scipher.html
+
+Decode and ... I have got
+https://hackyeaster.hacking-lab.com/hackyeaster/images/eggs/5e171aa074f390965a12fdc240.png
+
+so Wget and zbarimg 5e171aa074f390965a12fdc240.png
+QR-Code:he19-A6kG-rb9U-Iury-qv93
+########################
+
+
+
+

@@ -1,0 +1,1027 @@
+------------------------------------------------------------------------------
+01
+------------------------------------------------------------------------------
+
+
+To untwist the image we can use ImageMagick with the following command:
+
+convert twisted.png -swirl 115 egg-01.png
+
+http://www.imagemagick.org/Usage/warping/
+
+
+
+
+------------------------------------------------------------------------------
+02
+------------------------------------------------------------------------------
+
+
+Exporting the single frames by using ImageMagick with the following command:
+
+convert justWatch.gif frame_%02d.png
+
+https://coderwall.com/p/ex4upg/extract-frames-from-gifs-with-imagemagick
+
+---
+
+Now we can decode the signs of the handspeak character by character:
+
+frame-00.png	G
+frame-01.png	I
+frame-02.png	V
+frame-03.png	E
+frame-04.png	M
+frame-05.png	E
+frame-06.png	A
+frame-07.png	S
+frame-08.png	I
+frame-09.png	G
+frame-10.png	N
+
+https://www.handspeak.com/spell/index.php?id=spell-asl
+
+---
+
+The password for the egg-o-matic is: givemeasign
+
+
+------------------------------------------------------------------------------
+03
+------------------------------------------------------------------------------
+
+
+From the ruby code we see that the text input gets converted to hex and then
+to a number. The number is then multiplied by "['5'].cycle(101).to_a.join.to_i"
+which itself is a large number with 101 5's. The resulting number is finally
+stored as base64.
+
+For reversing the algorithm, we have to read the base64 string into a number
+and divide it by the number with 101 5's.
+
+---
+
+First we convert the given base64 string to a hex string.
+
+https://gchq.github.io/CyberChef/#recipe=From_Base64('A-Za-z0-9%2B/%3D',true)To_Hex('None')&input=SzdzQVl6R2xZeDBrWnlYSUlQclh4SzIyRGtVNFErclRHZlVrOWk5dkE2MEMvWmNRT1NXTmZKTFR1NFJwSUJ5LzI3eUs1Q0JXK1VyQmhtMD0
+
+--> 2bbb006331a5631d246725c820fad7c4adb60e453843ead319f524f62f6f03ad02fd971039258d7c92d3bb8469201cbfdbbc8ae42056f94ac1866d
+
+---
+
+Now, we reverse the multiplication by performing the division of the base64
+decoded string with the number given by "['5'].cycle(101).to_a.join.to_i":
+
+0x2bbb006331a5631d246725c820fad7c4adb60e453843ead319f524f62f6f03ad02fd971039258d7c92d3bb8469201cbfdbbc8ae42056f94ac1866d / 55555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555
+
+-> 6e 30 30 62 5f 73 74 79 6c 65 5f 63 72 79 70 74 6f
+
+https://defuse.ca/big-number-calculator.htm
+
+---
+
+Decoding the hex string with CyberChef gives us the password.
+
+-> n00b_style_crypto
+
+https://gchq.github.io/CyberChef/#recipe=From_Hex('Auto')&input=NmUgMzAgMzAgNjIgNWYgNzMgNzQgNzkgNmMgNjUgNWYgNjMgNzIgNzkgNzAgNzQgNmY
+
+
+
+------------------------------------------------------------------------------
+04
+------------------------------------------------------------------------------
+
+
+If we zoom into the disco ball, we see a QR code in there. Manually putting
+it together in Excel reveals our flag.
+
+he19-r5pN-YIRp-2cyh-GWh8
+
+
+------------------------------------------------------------------------------
+05
+------------------------------------------------------------------------------
+
+
+Renaming the .docx file to .zip and extracting it reveals the content of the
+Word document. Looking at docProps/core.xml gives us a hint to SCIpher.
+
+<dc:creator>SCIpher</dc:creator>
+
+---
+
+Googling for SCIpher shows a method for encoding secret messages within a
+scientific call for papers (CFP) document. We can use the web decoder by pasting
+the text of the Word document into the web form.
+
+https://pdos.csail.mit.edu/archive/scigen/scipher.html
+
+---
+
+The decoded message gives us our easter egg:
+
+https://hackyeaster.hacking-lab.com/hackyeaster/images/eggs/5e171aa074f390965a12fdc240.png
+
+
+------------------------------------------------------------------------------
+07
+------------------------------------------------------------------------------
+
+
+Looking at eggi.sh we recognize that the shell code is obfuscated by using
+several shell variables which get concatenated. The concatenated string is
+then passed to the eval command.
+
+---
+
+First we can create a modified version of eggi.sh where we comment $Ax2$xTT
+and put an echo instead of it. In this way we can print the non-obfuscated
+shell code. We name the script eggi-modified.sh
+
+./eggi-modified.sh
+
+---
+
+From the non-obfuscated shell code we see, that the variable $t contains the
+URL to our egg. We create a new script egg.sh with the following contents.
+
+z="
+";Cz='s:';qz='.p';fz='8a';az='e9';Oz='co';Xz='a6';hz='7e';Rz='im';Bz='tp';lz='62';Kz='in';Wz='s/';rz='ng';Yz='1e';Jz='r.';Iz='te';Tz='es';Zz='f3';kz='15';Az='ht';Fz='ck';Uz='/e';Sz='ag';Lz='g-';Ez='ha';Vz='gg';Pz='m/';pz='8c';Gz='ye';Dz='//';iz='cd';Hz='as';Mz='la';Nz='b.';nz='c7';Qz='r/';ez='d8';cz='ac';gz='12';bz='75';oz='4a';mz='42';jz='6e';dz='b7';
+t="$Az$Bz$Cz$Dz$Ez$Fz$Gz$Hz$Iz$Jz$Ez$Fz$Kz$Lz$Mz$Nz$Oz$Pz$Ez$Fz$Gz$Hz$Iz$Qz$Rz$Sz$Tz$Uz$Vz$Wz$Xz$Yz$Zz$az$bz$cz$dz$ez$fz$gz$hz$iz$jz$kz$lz$mz$nz$oz$Zz$pz$qz$rz"
+echo "Find your egg at $t"
+
+---
+
+Now we can run our script and get the URL to the egg.
+
+./egg.sh
+
+Find your egg at https://hackyeaster.hacking-lab.com/hackyeaster/images/eggs/a61ef3e975acb7d88a127ecd6e156242c74af38c.png
+
+
+------------------------------------------------------------------------------
+08
+------------------------------------------------------------------------------
+
+
+Replacing the small QR codes with the correct markers gives us a QR code with
+the text "Isn't that a bit too easy?". Scanning the small QR codes themselves
+we get "remove me". So that does not help us. We then open the JPEG file in a
+hex editor to see if we find something suspicious.
+
+---
+
+Indeed we find that the original image data has been duplicated and appended
+to the original data where the following strings have been added.
+
+(KEY=1857304593749584)
+
+(E7EF085CEBFCE8ED93410ACF169B226A)
+
+Furthermore, there are some random bytes after the second EOI marker.
+
+---
+
+After various tries to decrypt the given hex string with the given key, we find
+out that AES in ECB mode was used with the given key interpreted as UTF8 string.
+Finally we use CyberChef to get the password.
+
+https://gchq.github.io/CyberChef/#recipe=AES_Decrypt(%7B'option':'UTF8','string':'1857304593749584'%7D,%7B'option':'Hex','string':''%7D,'ECB','Hex','Raw',%7B'option':'Hex','string':''%7D)&input=RTdFRjA4NUNFQkZDRThFRDkzNDEwQUNGMTY5QjIyNkE
+
+Ju5t_An_1mag3
+
+---
+
+
+
+
+------------------------------------------------------------------------------
+09
+------------------------------------------------------------------------------
+
+
+From the challenge description and the file name we recognize that we have to
+reverse something. If we open the file in a hex editor, we see that it is a
+zip archive when reversing the bytes.
+
+---
+
+We can reverse the bytes of the evihcra.piz file to get a valid archive.zip:
+
+< evihcra.piz xxd -p -c1 | tac | xxd -p -r > archive.zip
+
+https://unix.stackexchange.com/questions/416401/how-to-reverse-the-content-of-binary-file
+
+---
+
+If we now extract the archive.zip, we get a 90gge.gnp file. Trying to reverse
+it the same way does not work. Looking at the magic header and the bytes in a
+hex editor reveals, that we just have to fix the header. The png chunks seem
+to be valid (IHDR, IDAT etc.).
+ 
+Original header	89 47 4E 50 0D 0A 1A 0A
+Fixed header	89 50 4E 47 0D 0A 1A 0A
+
+https://en.wikipedia.org/wiki/List_of_file_signatures
+
+---
+
+From that we got a mirrored easter egg which we can correct by using the
+convert tool from ImageMagick:
+
+convert egg09.png -flop egg09-tmp.png
+
+---
+
+Finally, we have to negate the colors in order to scan the QR code with the app:
+
+convert egg09-tmp.png -channel RGB -negate egg-09.png
+
+
+
+------------------------------------------------------------------------------
+10
+------------------------------------------------------------------------------
+
+
+By looking through the website we find several user names:
+- no_one
+- the_admin
+- null
+- the_bean
+- hax0r
+
+---
+
+From the robots.txt we get a hint that maybe the_admin knows more about the flag.
+
+http://whale.hacking-lab.com:3371/robots.txt
+
+---
+
+Also from the start and the questions page we could recognize that the planned
+database migration has something to do with a NoSQL database. Furthermore, a
+look at the HTTP response headers reveal, that the Express JS framework is used.
+
+---
+
+A google search for NoSQL injection and MongoDB brings up the following payload
+for a possible login bypass
+
+{"username": {"$gt": ""}, "password": {"$gt": ""}}
+
+https://blog.websecurify.com/2014/08/hacking-nodejs-and-mongodb.html
+
+---
+
+Sending the following POST request allows us to login as user "the_admin".
+
+POST /login HTTP/1.1
+Host: whale.hacking-lab.com:3371
+Content-Type: application/json
+{"username": "the_admin", "password": {"$gt": ""}
+
+---
+
+Browsing now through the questions page, we see a new yellow row has appeared
+that was not visible before. Clicking on it we get a new hint from user "null".
+
+"Should my password really be the flag?"
+
+From the conversation it is clear that we have to get the password from user
+"null" which is the hidden flag.
+
+---
+
+By using the operator $regex we construct a query to find this password step by
+step.
+
+{"username": "null", "password": {"$regex": "^X.*$"}}
+
+Now we can iterate through X and see if we get a valid HTTP 200 response back.
+If that is the case, we have found the first character of the password. By using
+this method, we can iterate through all characters of the password to get the
+final flag.
+
+{"username": "null", "password": {"$regex": "^XY.*$"}}
+
+---
+
+We finally write a Python script which is doing this for us. A similar script
+can be found here:
+
+https://blog.0daylabs.com/2016/09/05/mongo-db-password-extraction-mmactf-100
+
+---
+
+Running the script for users "the_admin" and "null" gives us the following
+passwords.
+
+the_admin: 76eKxMEQFcfG3fPe
+null: N0SQL_injections_are_a_thing
+
+---
+
+The final flag is given by N0SQL_injections_are_a_thing
+
+---
+
+
+------------------------------------------------------------------------------
+11
+------------------------------------------------------------------------------
+
+
+For solving the memory within the given time limit we have to write a script.
+We construct the needed HTTP requests within a Python script. The idea is to
+go through the following steps.
+
+1. Initial request and get session cookie
+GET http://whale.hacking-lab.com:1111
+
+2. Get all pictures and construct an array of MD5 hashes
+GET http://whale.hacking-lab.com:1111/pic/1
+up to
+GET http://whale.hacking-lab.com:1111/pic/98
+
+3. Solve memory by comparing the MD5 hashes
+POST http://whale.hacking-lab.com:1111/solve
+Cookie: sessionId=...
+first=X&second=Y
+
+
+
+------------------------------------------------------------------------------
+12
+------------------------------------------------------------------------------
+
+
+We first check the given binary file with the strings command to see if we can
+get some hints before starting the disassembler. Checking the output of strings
+we see a suspicious .c file that tells us about an XOR challenge.
+
+strings decryptor | grep XOR
+XOR_Challenge.c
+
+---
+
+From the hint we know that we have to decrypt a text with a flag. Since we have
+a whole text we could try to crack the XOR encryption key by applying a frequency
+analysis. We find a nice XOR cracker online that we can use for this purpose.
+
+https://wiremask.eu/tools/xor-cracker
+
+---
+
+By using the Ghidra disassembler we can get the location where the cipher text
+in the binary resides.
+
+Cipher text: 0x1060 - 0x13ac
+
+---
+
+We copy the cipher text into a new file called data.hex that we then upload to
+the XOR cracker page. The page instantaneously finds some possible keys.
+
+10r w1th_n4n+
+10r w1th_n4nd
+
+---
+
+From these results it is easy to find the final key which is then given by:
+
+x0r_w1th_n4nd
+
+---
+
+Now we enter the password into the decryptor.
+
+./decryptor
+
+Enter Password: x0r_w1th_n4nd
+Hello, 
+congrats you found the hidden flag: he19-Ehvs-yuyJ-3dyS-bN8U. 
+
+'The XOR operator is extremely common as a component in more complex ciphers. By itself, using a constant repeating key, a simple XOR cipher can trivially be broken using frequency analysis. If the content of any message can be guessed or otherwise known then the key can be revealed.'
+(https://en.wikipedia.org/wiki/XOR_cipher)
+
+'An XOR gate circuit can be made from four NAND gates. In fact, both NAND and NOR gates are so-called "universal gates" and any logical function can be constructed from either NAND logic or NOR logic alone. If the four NAND gates are replaced by NOR gates, this results in an XNOR gate, which can be converted to an XOR gate by inverting the output or one of the inputs (e.g. with a fifth NOR gate).' 
+(https://en.wikipedia.org/wiki/XOR_gate)
+
+---
+
+The flag we get is given by:
+
+he19-Ehvs-yuyJ-3dyS-bN8U
+
+---
+
+------------------------------------------------------------------------------
+13
+------------------------------------------------------------------------------
+
+
+From the hint it is clear that we have to count the quavers und read the
+semibreves in order to get a hex string.
+
+quaver = eighth note
+semibreve = whole note
+
+---
+
+Counting the eighth notes and reading the whole notes leads us to the following
+hex string:
+
+48 41 43 4b 5f 4d 45 5f 41 4d 41 44 45 55 53
+
+---
+
+We can decode the bytes easily to get the corresponding characters by using
+CyberChef:
+
+https://gchq.github.io/CyberChef/#recipe=From_Hex('Space')&input=NDggNDEgNDMgNGIgNWYgNGQgNDUgNWYgNDEgNGQgNDEgNDQgNDUgNTUgNTM
+
+---
+
+This gives us the password for the egg-o-matic:
+
+HACK_ME_AMADEUS
+
+
+------------------------------------------------------------------------------
+14
+------------------------------------------------------------------------------
+
+
+From running the binary and making some basic checks we gather the following
+information.
+
+- block size: 16 bytes / 128 bits
+- key size: 16 bytes / 128 bits
+- same plain text gives same cipher text (no IV in use)
+- repeating plain text shows repeating cipher text (ECB mode in use)
+- used cipher is probably AES-128-ECB
+
+---
+
+The given cipher text has 64 bytes / 512 bits, which equals 4 blocks.
+
+9771a6a9aea773a93edc1b9e82b745030b770f8f992d0e45d7404f1d6533f9df348dbccd71034aff88afd188007df4a5c844969584b5ffd6ed2eb92aa419914e
+
+---
+
+Check if cipher blocks are repeating (ECB mode).
+
+./WhiteBox
+WhiteBox Test
+Enter Message to encrypt: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa 
+31925cd8f88ae453fd715aff8e6a23a1 31925cd8f88ae453fd715aff8e6a23a1 67160e5673ae393ce6c5fb77a8d7eb44
+
+-> found repeated block
+
+---
+
+Reading about whitebox cryptography we find the SideChannelMarvels repo where
+several implementations and corresponding key attacks reside.
+
+https://github.com/SideChannelMarvels
+
+---
+
+First we try to use Differential Computation Analysis (DCA) by writing a
+corresponding Python script. But after gathering 2000 execution traces and
+running Daredevil we cannot make any progress to get our decryption key.
+
+python2.7 dca_attack.py
+daredevil -c mem_addr1_rw1_2000_144.attack_sbox.config
+daredevil -c mem_addr1_rw1_2000_144.attack_multinv.config
+
+---
+
+So we leave DCA for a while to get into Differential Fault Analysis (DFA).
+By using the different examples we build a second Python script. After tuning
+the parameters a little bit we obtain the last round key.
+
+python3 dfa_attack.py
+
+Last round key #N found:
+FD83DB41AC158393CC291088B76F201A
+
+---
+
+By using Stark we can now recover the AES key.
+
+aes_keyschedule FD83DB41AC158393CC291088B76F201A 10
+K00: 336D62336E6433645F6B33795F413335
+K01: B1AEF4FCDFCAC79880A1F4E1DFE0C7D4
+K02: 5268BC628DA27BFA0D038F1BD2E348CF
+K03: 473A36D7CA984D2DC79BC23615788AF9
+K04: F344AF8E39DCE2A3FE472095EB3FAA6C
+K05: 96E8FF67AF341DC451733D51BA4C973D
+K06: 9F60D8933054C5576127F806DB6B6F3B
+K07: A0C83A2A909CFF7DF1BB077B2AD06840
+K08: 508D33CFC011CCB231AACBC91B7AA389
+K09: 91879460519658D2603C931B7B463092
+K10: FD83DB41AC158393CC291088B76F201A
+
+-> Key: 336D62336E6433645F6B33795F413335
+
+---
+
+Decoding the hex key reveals:
+
+3mb3nd3d_k3y_A35
+
+---
+
+Finally, we can decrypt the given cipher text by using OpenSSL.
+
+echo 9771a6a9aea773a93edc1b9e82b745030b770f8f992d0e45d7404f1d6533f9df348dbccd71034aff88afd188007df4a5c844969584b5ffd6ed2eb92aa419914e|xxd -r -p|openssl enc -d -aes-128-ecb -nopad -K 336D62336E6433645F6B33795F413335
+
+---
+
+This reveals the following text:
+
+Congrats! Enter whiteboxblackhat into the Egg-o-Matic!
+
+---
+
+
+------------------------------------------------------------------------------
+15
+------------------------------------------------------------------------------
+
+
+Searching on steemit.com for the string "hacky easter" shows up several posts
+from Steem IDs "ctf" and "darkstar-42". Opening the posts and reading through
+the content we cannot find any secret note.
+
+---
+
+Googling for a tool where we can do a search in the memo field of Steem
+transactions leads us to the "Steem Account Transfer Viewer".
+
+https://steemyy.com/transfer-viewer
+
+---
+
+Now we try to search for the string "hacky easter" in the memo field. We set
+the Steem Account ID to "ctf". This reveals a transaction from @darkstar-42
+to @ctf on 2018-04-01 14:39:36 with the following memo:
+
+Hacky Easter 2019 takes place between April and May 2019. Take a note: nomoneynobunny
+
+---
+
+The password for the egg-o-matic is then given by: nomoneynobunny
+
+
+------------------------------------------------------------------------------
+16
+------------------------------------------------------------------------------
+
+
+First we import the EveryThing.sql into our XAMPP environment on macOS.
+
+cd /Applications/XAMPP/bin
+
+./mysql -u root -p
+
+CREATE DATABASE Thing;
+
+Ctrl+D
+
+./mysql -u root -p Thing < /Users/felix/Downloads/Hacky Easter 2019/_todo_egg-16/EveryThing.sql
+
+---
+
+Looking into the data with phpmyadmin shows that every row has a 'type' field.
+Furthermore the 'ord' field seems to indicate the order of objects linked to
+the same parent node by having the same 'pid'. The field 'pid' is the foreign
+key used to make this link to the parent.
+
+---
+
+We find some interesting types starting with png. Now we select all available
+types that could belong to a png and sorting them according to the png file
+format.
+
+SELECT DISTINCT `type` FROM `Thing` WHERE `type` LIKE '%png%'
+
+png.head
+png.ihdr
+png.gama
+png.chrm
+png.bkgd
+png.phys
+png.time
+png.idat
+png.text
+png.iend
+
+png
+
+---
+
+Since selecting the png.head type gives us several rows, we try to find
+a png chunk that starts with 'AACA' which is the base64 encoded sequence
+of the first IDAT chunk of other yellow png eggs.
+
+SELECT * FROM `Thing` WHERE `value` LIKE 'AACA%' AND `type`='png.idat'
+
+---
+
+This gives us two rows where we take the pid to see what other objects
+are belonging to the same parent node.
+
+0xc3b8598547564f8e898befbb9b82912b
+SELECT * FROM `Thing` WHERE `pid`=0xc3b8598547564f8e898befbb9b82912b ORDER BY `Thing`.`ord` ASC
+
+0xbb8d67364d504f829bbf6f1efeec0104
+SELECT * FROM `Thing` WHERE `pid`=0xbb8d67364d504f829bbf6f1efeec0104 ORDER BY `Thing`.`ord` ASC
+
+Each of the two queries show us again 43 png.idat objects that seem to belong together.
+
+---
+
+Now we want to select the two different parent nodes.
+
+SELECT * FROM `Thing` WHERE `id`=0xc3b8598547564f8e898befbb9b82912b
+-> The parent of the resulting row has the pid 0x80dcb19d74354660afdadd761b3df72e
+
+SELECT * FROM `Thing` WHERE `id`=0xbb8d67364d504f829bbf6f1efeec0104
+-> The parent of the resulting row has the pid 0x80dcb19d74354660afdadd761b3df72e
+
+---
+
+We recognize that the originally found rows by looking for 'AACA' belong
+together to the same image. We can now query all the image parts via the
+found id 0x80dcb19d74354660afdadd761b3df72e.
+
+SELECT * FROM `Thing` WHERE `pid`=0x80dcb19d74354660afdadd761b3df72e ORDER BY `Thing`.`ord` ASC
+
+---
+
+The result of this query shows us 13 rows with the png chunk types already
+seen above. We write a Python script to query all rows and concatenate
+the bytes to get back the image. By doing so, we indeed get the easter egg.
+
+solve.py
+
+---
+
+Looking at the parent id, we see that the easter egg is hidden as image
+'A strange car'.
+
+SELECT * FROM `Thing` WHERE `id`=0x80dcb19d74354660afdadd761b3df72e
+
+---
+
+
+
+------------------------------------------------------------------------------
+18
+------------------------------------------------------------------------------
+
+
+The password in the input field corresponds to the character values stored in
+local0 to local23 in the wasm function validatePassword.
+
+From the code we have the following conditions:
+
+local0 = 84
+local1 = 104
+local2 = 51
+local3 = 80
+
+local12 = local16
+local15 = local22
+local17 = local23
+
+local5 - local7 = 14
+local5 - local9 + local19 = 79
+
+local7 - local14 = local20
+local7 % local6 = local10
+
+(local9 % local4) * 2 = local13
+local9 % local8 = 40
+
+(local11 % local13) = local21 - 46
+
+local13 % local6 = 20
+
+local14 + 1 = local15
+
+local23 % local22 = 2
+
+---
+
+The allowed characters are given by the OR statements in function validateRange.
+
+local0 == 48
+OR
+local0 == 49
+OR
+local0 == 51 
+OR
+local0 == 52
+OR
+local0 == 53
+OR
+local0 == 72
+OR
+local0 == 76
+OR
+local0 == 88
+OR
+local0 == 99
+OR
+local0 == 100
+OR
+local0 == 102
+OR
+local0 == 114
+
+48 49 51 52 53 72 76 88 99 100 102 114
+
+01345HLXcdfr
+
+---
+
+This leads us to the following solutions:
+
+local5 = 114
+local7 = 100
+local9 = 88
+local8 = 48
+local19 = 53
+local10 = 48
+local13 = 72
+local6 = 52
+local14 = 48
+local20 = 52
+local15 = 49
+local4 = 52
+local11 = 102
+local21 = 76
+local23 = 51
+local22 = 49
+local17 = 51
+
+---
+
+We can write the password with the given solutions now as follows:
+
+Byte        0  1   2  3  4  5   6  7   8  9  10 11  12 13 14 15 16 17  18 19 20 21 22 23
+
+Decimal     84 104 51 80 52 114 52 100 48 88 48 102 ?  72 48 49 ?  51  ?  53 52 76 49 51             
+
+Character   T  h   3  P  4  r   4  d   0  X  0  f   _  H  0  1  _  3   _  5  4  L  1  3
+
+---
+
+Besides the conditions above, the following sum and xor conditions have to be fulfilled.
+
+local25 = 0
+local26 = 0
+
+loop: local4 ... local23 as CHAR
+
+   local25 = local25 + CHAR
+   local26 = local26 XOR CHAR
+
+end
+
+if: local25 != 1352
+   return
+
+if: local26 != 44
+   return
+
+---
+
+Checking the sum and xor condition by using Excel finally reveals our password.
+
+Th3P4r4d0X0fcH01c3154L13
+
+
+
+------------------------------------------------------------------------------
+24
+------------------------------------------------------------------------------
+
+
+For solving the problem within the given time limit we have to write a script.
+The image recognition and counting can be done by using YOLO real-time object
+detection.
+
+https://pjreddie.com/darknet/yolo
+
+---
+
+Initial tests with the pretrained weights from YOLOv2 and YOLOv3 do not give
+reasonable results to solve this challenge. So we decide to train our own AI.
+For that purpose we are using Darkflow to retrain the YOLOv2-Tiny network.
+
+https://github.com/thtrieu/darkflow
+
+---
+
+We find the following tutorials on which we base our work.
+
+https://medium.com/coinmonks/detecting-custom-objects-in-images-video-using-yolo-with-darkflow-1ff119fa002f
+https://blog.goodaudience.com/yolo-object-detection-walkthrough-for-the-rsna-pneumonia-detection-challenge-123ec9a9adf2
+
+---
+
+First, we have to get some training data by calling the CAPTEG page several
+times. We base the recognition on single images in the grid. Therefore we crop
+the images with ImageMagick.
+
+convert picture-1.jpg -crop 3x3-10-10@\! +repage +adjoin picture-1-crop-%d.jpg
+
+---
+
+We take the BBox-Label-Tool mentioned in the first tutorial to do the labeling
+of our training images.
+Attention: No dashes in the file names!
+
+pip install pillow
+git clone https://github.com/enriqueav/BBox-Label-Tool.git
+cd BBox-Label-Tool
+
+BBox-Label-Tool
+|
+|--main.py # source code for the tool
+|--Images/ # directory containing the images to be labeled
+|--Labels/ # directory for the labeling results
+|--Examples/ # directory for the example bboxes
+|--AnnotationsXML/ # directory for the labeling results to be used by Darkflow
+
+mkdir Images/002 Labels/002 Examples/002 AnnotationsXML/002
+
+---
+
+We set the proper class name in the label tool.
+
+cd BBox-Label-Tool
+vi xml_util.py
+
+n.text = 'egg'
+
+---
+
+Next, we label the training images with the label tool.
+
+python main.py
+
+---
+
+Now we install Darkflow.
+
+git clone https://github.com/thtrieu/darkflow.git
+cd darkflow
+python setup.py build_ext --inplace
+
+---
+
+We create the new YOLOv2-Tiny config for our network.
+
+cd darkflow/cfg
+wget https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/yolov2-tiny.cfg
+cp yolov2-tiny.cfg yolov2-tiny-c1.cfg
+
+Attention: We need both YOLOv2-Tiny config files, the original and our customized one!
+
+---
+
+The config has to be adjusted to consider only one detection class since we
+only want to detect eggs.
+
+cd darkflow/cfg
+vi yolov2-tiny-c1.cfg
+
+filters=30
+classes=1
+
+---
+
+The class name for detection can be set via labels.txt.
+
+cd darkflow
+vi labels.txt
+
+egg
+
+---
+
+Since we want to keep convergence time of our model small we download the
+weights of YOLOv2-Tiny to base our training on.
+
+cd darkflow/bin
+wget https://pjreddie.com/media/files/yolov2-tiny.weights
+
+---
+
+Now we start training our network.
+
+cd darkflow
+python flow --model cfg/yolov2-tiny-c1.cfg \
+    --load bin/yolov2-tiny.weights \
+    --labels labels.txt \
+    --train --trainer adam \
+    --dataset "/root/Documents/tools/BBox-Label-Tool/Images/002" \
+    --annotation "/root/Documents/tools/BBox-Label-Tool/AnnotationsXML/002" \
+    --epoch 1000
+
+---
+
+And doing some retraining based on previously saved weights.
+
+cd darkflow
+python flow --model cfg/yolov2-tiny-c1.cfg \
+    --load -1 \
+    --labels labels.txt \
+    --train --trainer adam \
+    --dataset "/root/Documents/tools/BBox-Label-Tool/Images/002" \
+    --annotation "/root/Documents/tools/BBox-Label-Tool/AnnotationsXML/002" \
+    --epoch 1000
+
+---
+
+After each 1000 epochs of training we test our egg recognition.
+
+python flow --model cfg/yolov2-tiny-c1.cfg \
+    --load -1 \
+    --labels labels.txt \
+    --imgdir "/root/Documents/Hacky Easter 2019/egg-24/images"
+
+---
+
+We also try to adjust the threshold parameter to fine-tune the detection.
+
+python flow --model cfg/yolov2-tiny-c1.cfg \
+    --load -1 \
+    --labels labels.txt \
+    --imgdir "/root/Documents/Hacky Easter 2019/egg-24/images" \
+    --threshold 0.26
+
+---
+
+In the end, we needed 5000 epochs of training to get the 42 rounds passed.
+We write a Python script which does the overall request and response handling
+and calls our AI for detection.
+
+capteg-solver.py
+
+---
+
+We get our final flag.
+
+he19-s7Jj-mO4C-rP13-ySsJ
+
+---
+
+Remark: To solve the assertion error we observed during execution of Darkflow
+we have to do a small change to the loader.py script.
+
+vi darkflow/utils/loader.py
+
+self.offset = 20
+
+https://sites.google.com/view/tensorflow-example-java-api/complete-guide-to-train-yolo/convert-darknet-weights-to-pb-file
+
+---
+
+------------------------------------------------------------------------------
+25
+------------------------------------------------------------------------------
+
+
+From the challenge description we can imagine that the egg is hidden in the
+basket image on the "Eggs" page.
+
+---
+
+We download the flags.jpg image from the "Eggs" page and investigate it in a
+hex editor. This shows us the URL to the hidden egg.
+
+https://hackyeaster.hacking-lab.com/hackyeaster/images/eggs/f8f87dfe67753457dfee34648860dfe786.png
+
+
+
+------------------------------------------------------------------------------
+26
+------------------------------------------------------------------------------
+
+
+The challenge description gives us the hint to investigate the stylesheets of
+the web page. Looking at the various .css files we can find the URL to our egg
+in source-sans-pro.css. The egg is in TTF format and can be downloaded from:
+
+https://hackyeaster.hacking-lab.com/hackyeaster/fonts/TTF/Egg26.ttf
+
+
+

